@@ -1,0 +1,35 @@
+{
+  "id": "run_20251027_203826",
+  "timestamp": "2025-10-27 20:38:35",
+  "description": "Demo: Multi-objective optimization (50 generations)",
+  "parameters": {
+    "population_size": 100,
+    "generations": 50,
+    "mutation_rate": 0.1,
+    "crossover_rate": 0.8
+  },
+  "metrics": {
+    "initial_co2_affinity": 0.7427,
+    "final_co2_affinity": 0.8387,
+    "improvement_percentage": 8.9,
+    "final_stability": 0.73,
+    "final_expression": 0.68,
+    "final_catalytic": 0.76,
+    "generations": 50,
+    "population_size": 100
+  },
+  "sequences": {
+    "original": "MHHVAALLALAVCANACSHVYFADSDLHDHGRRLTAPIHEEHDHGHVYFADSDLHDHGRRLT",
+    "optimized": "MHHVAALLALAVCANACSHVYFADSDLHDHGRRLTAPIHEEHDHGHVYFADSDLHDHGRRLT"
+  },
+  "files": {
+    "visualizations": [
+      "evolution_progress.png",
+      "3d_fitness_landscape.png",
+      "original_sequence_analysis.png",
+      "optimized_sequence_analysis.png",
+      "co2_binding_analysis.png",
+      "sequence_comparison.png"
+    ]
+  }
+}

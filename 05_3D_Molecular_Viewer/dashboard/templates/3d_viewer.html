@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Protein Molecular Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #viewer {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .controls-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-width: 300px;
+            z-index: 1000;
+        }
+        
+        .controls-panel h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 1.2em;
+        }
+        
+        .control-group {
+            margin: 15px 0;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        
+        .control-group select,
+        .control-group input[type="range"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+        }
+        
+        .control-group input[type="range"] {
+            padding: 0;
+        }
+        
+        .toggle-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+        }
+        
+        .info-panel {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 300px;
+            z-index: 1000;
+        }
+        
+        .info-panel h4 {
+            margin: 0 0 10px 0;
+            color: #3498db;
+        }
+        
+        .legend {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        .legend h4 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #34495e;
+        }
+        
+        .stats {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .stats div {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+        
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            z-index: 2000;
+        }
+        
+        .loading h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #667eea;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="viewer"></div>
+        
+        <div class="loading" id="loading">
+            <h3>Loading 3D Protein Structure...</h3>
+            <div class="spinner"></div>
+        </div>
+        
+        <div class="controls-panel">
+            <h3>🧬 3D Protein Viewer</h3>
+            
+            <div class="control-group">
+                <label>Structure:</label>
+                <select id="structureSelect">
+                    <option value="original">Original Carbonic Anhydrase</option>
+                    <option value="optimized">Optimized Carbonic Anhydrase</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Visualization Style:</label>
+                <button class="toggle-btn active" id="ballStickBtn">Ball & Stick</button>
+                <button class="toggle-btn" id="spaceFillBtn">Space Fill</button>
+                <button class="toggle-btn" id="backboneBtn">Backbone</button>
+            </div>
+            
+            <div class="control-group">
+                <label>Show Elements:</label>
+                <button class="toggle-btn active" id="proteinBtn">Protein</button>
+                <button class="toggle-btn active" id="co2Btn">CO₂ Molecules</button>
+                <button class="toggle-btn active" id="zincBtn">Zinc Ion</button>
+                <button class="toggle-btn active" id="bondsBtn">Bonds</button>
+            </div>
+            
+            <div class="control-group">
+                <label>Atom Size: <span id="atomSizeValue">1.0</span></label>
+                <input type="range" id="atomSize" min="0.5" max="3.0" step="0.1" value="1.0">
+            </div>
+            
+            <div class="control-group">
+                <label>Rotation Speed: <span id="rotationSpeedValue">1.0</span></label>
+                <input type="range" id="rotationSpeed" min="0" max="3.0" step="0.1" value="1.0">
+            </div>
+            
+            <div class="control-group">
+                <button class="toggle-btn" id="autoRotateBtn">Auto Rotate</button>
+                <button class="toggle-btn" id="resetViewBtn">Reset View</button>
+                <button class="toggle-btn" id="highlightSitesBtn">Highlight Binding Sites</button>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <h4>🎨 Color Legend</h4>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #8282D2;"></div>
+                <span>Zinc Binding (H)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #E60A0A;"></div>
+                <span>Catalytic (D/E)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #FA9600;"></div>
+                <span>CO₂ Binding (S/T)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #E6E600;"></div>
+                <span>Structural (C)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #FF4444;"></div>
+                <span>CO₂ Molecule</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #FFD700;"></div>
+                <span>Zinc Ion</span>
+            </div>
+        </div>
+        
+        <div class="info-panel" id="infoPanel">
+            <h4>📊 Structure Information</h4>
+            <div id="structureInfo">
+                <div>Loading structure data...</div>
+            </div>
+            <div class="stats" id="structureStats">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class Protein3DViewer {
+            constructor() {
+                this.scene = null;
+                this.camera = null;
+                this.renderer = null;
+                this.controls = null;
+                this.proteinGroup = null;
+                this.co2Group = null;
+                this.zincGroup = null;
+                this.bondGroup = null;
+                
+                this.currentStructure = null;
+                this.structureData = {};
+                
+                this.settings = {
+                    atomSize: 1.0,
+                    rotationSpeed: 1.0,
+                    autoRotate: false,
+                    showProtein: true,
+                    showCO2: true,
+                    showZinc: true,
+                    showBonds: true,
+                    visualStyle: 'ballStick',
+                    highlightSites: false
+                };
+                
+                this.init();
+                this.setupControls();
+                this.loadStructures();
+            }
+            
+            init() {
+                // Scene setup
+                this.scene = new THREE.Scene();
+                this.scene.background = new THREE.Color(0x1a1a2e);
+                
+                // Camera setup
+                this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                this.camera.position.set(30, 30, 30);
+                this.camera.lookAt(0, 0, 0);  // Always look at center
+                
+                // Renderer setup
+                this.renderer = new THREE.WebGLRenderer({ antialias: true });
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.renderer.shadowMap.enabled = true;
+                this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                document.getElementById('viewer').appendChild(this.renderer.domElement);
+                
+                // Lighting
+                const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+                this.scene.add(ambientLight);
+                
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+                directionalLight.position.set(50, 50, 50);
+                directionalLight.castShadow = true;
+                this.scene.add(directionalLight);
+                
+                const pointLight = new THREE.PointLight(0xffffff, 0.5, 100);
+                pointLight.position.set(-50, -50, 50);
+                this.scene.add(pointLight);
+                
+                // Groups for different components
+                this.proteinGroup = new THREE.Group();
+                this.co2Group = new THREE.Group();
+                this.zincGroup = new THREE.Group();
+                this.bondGroup = new THREE.Group();
+                
+                this.scene.add(this.proteinGroup);
+                this.scene.add(this.co2Group);
+                this.scene.add(this.zincGroup);
+                this.scene.add(this.bondGroup);
+                
+                // Mouse controls (simple rotation)
+                this.setupMouseControls();
+                
+                // Start render loop
+                this.animate();
+                
+                // Handle window resize
+                window.addEventListener('resize', () => this.onWindowResize());
+            }
+            
+            setupMouseControls() {
+                let isDragging = false;
+                let previousMousePosition = { x: 0, y: 0 };
+                
+                this.renderer.domElement.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    previousMousePosition.x = e.clientX;
+                    previousMousePosition.y = e.clientY;
+                });
+                
+                this.renderer.domElement.addEventListener('mousemove', (e) => {
+                    if (isDragging) {
+                        const deltaMove = {
+                            x: e.clientX - previousMousePosition.x,
+                            y: e.clientY - previousMousePosition.y
+                        };
+                        
+                        // Rotate camera around the center point (0,0,0)
+                        const spherical = new THREE.Spherical();
+                        spherical.setFromVector3(this.camera.position);
+                        
+                        // Update spherical coordinates
+                        spherical.theta -= deltaMove.x * 0.01;
+                        spherical.phi += deltaMove.y * 0.01;
+                        
+                        // Limit phi to prevent flipping
+                        spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi));
+                        
+                        // Convert back to cartesian and update camera
+                        this.camera.position.setFromSpherical(spherical);
+                        this.camera.lookAt(0, 0, 0);
+                        
+                        previousMousePosition.x = e.clientX;
+                        previousMousePosition.y = e.clientY;
+                    }
+                });
+                
+                this.renderer.domElement.addEventListener('mouseup', () => {
+                    isDragging = false;
+                });
+                
+                // Zoom with mouse wheel
+                this.renderer.domElement.addEventListener('wheel', (e) => {
+                    e.preventDefault();
+                    const zoom = e.deltaY > 0 ? 1.1 : 0.9;
+                    
+                    // Zoom by moving camera closer/further from center
+                    const direction = this.camera.position.clone().normalize();
+                    this.camera.position.multiplyScalar(zoom);
+                    
+                    // Prevent zooming too close or too far
+                    const distance = this.camera.position.length();
+                    if (distance < 5) {
+                        this.camera.position.normalize().multiplyScalar(5);
+                    } else if (distance > 200) {
+                        this.camera.position.normalize().multiplyScalar(200);
+                    }
+                    
+                    this.camera.lookAt(0, 0, 0);
+                });
+            }
+            
+            setupControls() {
+                // Structure selection
+                document.getElementById('structureSelect').addEventListener('change', (e) => {
+                    this.loadStructure(e.target.value);
+                });
+                
+                // Visualization style
+                document.getElementById('ballStickBtn').addEventListener('click', () => {
+                    this.setVisualizationStyle('ballStick');
+                });
+                document.getElementById('spaceFillBtn').addEventListener('click', () => {
+                    this.setVisualizationStyle('spaceFill');
+                });
+                document.getElementById('backboneBtn').addEventListener('click', () => {
+                    this.setVisualizationStyle('backbone');
+                });
+                
+                // Show/hide elements
+                document.getElementById('proteinBtn').addEventListener('click', () => {
+                    this.toggleElement('protein');
+                });
+                document.getElementById('co2Btn').addEventListener('click', () => {
+                    this.toggleElement('co2');
+                });
+                document.getElementById('zincBtn').addEventListener('click', () => {
+                    this.toggleElement('zinc');
+                });
+                document.getElementById('bondsBtn').addEventListener('click', () => {
+                    this.toggleElement('bonds');
+                });
+                
+                // Sliders
+                document.getElementById('atomSize').addEventListener('input', (e) => {
+                    this.settings.atomSize = parseFloat(e.target.value);
+                    document.getElementById('atomSizeValue').textContent = e.target.value;
+                    this.updateAtomSizes();
+                });
+                
+                document.getElementById('rotationSpeed').addEventListener('input', (e) => {
+                    this.settings.rotationSpeed = parseFloat(e.target.value);
+                    document.getElementById('rotationSpeedValue').textContent = e.target.value;
+                });
+                
+                // Buttons
+                document.getElementById('autoRotateBtn').addEventListener('click', () => {
+                    this.toggleAutoRotate();
+                });
+                
+                document.getElementById('resetViewBtn').addEventListener('click', () => {
+                    this.resetView();
+                });
+                
+                document.getElementById('highlightSitesBtn').addEventListener('click', () => {
+                    this.toggleHighlightSites();
+                });
+            }
+            
+            async loadStructures() {
+                try {
+                    // Load original structure
+                    const originalResponse = await fetch('../static/original_structure.json');
+                    this.structureData.original = await originalResponse.json();
+                    
+                    // Load optimized structure
+                    const optimizedResponse = await fetch('../static/optimized_structure.json');
+                    this.structureData.optimized = await optimizedResponse.json();
+                    
+                    // Load default structure
+                    this.loadStructure('original');
+                    
+                    document.getElementById('loading').style.display = 'none';
+                    
+                } catch (error) {
+                    console.error('Error loading structures:', error);
+                    // Load fallback demo data
+                    this.loadFallbackData();
+                    document.getElementById('loading').style.display = 'none';
+                }
+            }
+            
+            loadFallbackData() {
+                // Create simple demo structure
+                const demoStructure = {
+                    sequence: "MHHVAALLALAVCANACSHVYFADSDLHDHGRRLT",
+                    atoms: [],
+                    bonds: [],
+                    co2_molecules: [],
+                    zinc_coordination: null,
+                    metadata: { name: "Demo Structure", co2_affinity: 0.75 },
+                    statistics: { total_residues: 33, zinc_binding_sites: 3, catalytic_sites: 4 }
+                };
+                
+                // Generate simple coordinates
+                for (let i = 0; i < demoStructure.sequence.length; i++) {
+                    const angle = (i / demoStructure.sequence.length) * Math.PI * 2;
+                    const radius = 10;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+                    const z = (i % 3 - 1) * 2;
+                    
+                    const aa = demoStructure.sequence[i];
+                    let color = '#C8C8C8';
+                    let type = 'backbone';
+                    
+                    if (aa === 'H') { color = '#8282D2'; type = 'zinc_binding'; }
+                    else if (aa === 'D' || aa === 'E') { color = '#E60A0A'; type = 'catalytic'; }
+                    else if (aa === 'C') { color = '#E6E600'; type = 'structural'; }
+                    
+                    demoStructure.atoms.push({
+                        id: i,
+                        amino_acid: aa,
+                        position: [x, y, z],
+                        color: color,
+                        type: type,
+                        radius: 1.0
+                    });
+                    
+                    if (i > 0) {
+                        demoStructure.bonds.push({
+                            from: i-1,
+                            to: i,
+                            type: 'backbone'
+                        });
+                    }
+                }
+                
+                // Add demo CO2 molecules
+                demoStructure.co2_molecules = [
+                    { position: [0, 0, 10], binding_strength: 0.8 },
+                    { position: [5, 5, 8], binding_strength: 0.7 }
+                ];
+                
+                this.structureData.original = demoStructure;
+                this.structureData.optimized = { ...demoStructure, metadata: { ...demoStructure.metadata, name: "Optimized Demo", co2_affinity: 0.85 }};
+                
+                this.loadStructure('original');
+            }
+            
+            loadStructure(structureKey) {
+                if (!this.structureData[structureKey]) return;
+                
+                this.currentStructure = this.structureData[structureKey];
+                this.clearScene();
+                this.renderStructure();
+                this.updateInfoPanel();
+            }
+            
+            clearScene() {
+                this.proteinGroup.clear();
+                this.co2Group.clear();
+                this.zincGroup.clear();
+                this.bondGroup.clear();
+            }
+            
+            renderStructure() {
+                if (!this.currentStructure) return;
+                
+                // Render protein atoms
+                this.renderProteinAtoms();
+                
+                // Render bonds
+                this.renderBonds();
+                
+                // Render CO2 molecules
+                this.renderCO2Molecules();
+                
+                // Render zinc ion
+                this.renderZincIon();
+                
+                // Center the structure
+                this.centerStructure();
+                
+                // Update visibility
+                this.updateVisibility();
+            }
+            
+            renderProteinAtoms() {
+                this.currentStructure.atoms.forEach(atom => {
+                    const geometry = new THREE.SphereGeometry(atom.radius * this.settings.atomSize, 16, 16);
+                    const material = new THREE.MeshLambertMaterial({ 
+                        color: atom.color,
+                        transparent: true,
+                        opacity: 0.8
+                    });
+                    
+                    const mesh = new THREE.Mesh(geometry, material);
+                    mesh.position.set(...atom.position);
+                    mesh.castShadow = true;
+                    mesh.receiveShadow = true;
+                    mesh.userData = { type: 'atom', atom: atom };
+                    
+                    this.proteinGroup.add(mesh);
+                });
+            }
+            
+            renderBonds() {
+                if (!this.currentStructure.bonds) return;
+                
+                this.currentStructure.bonds.forEach(bond => {
+                    const fromAtom = this.currentStructure.atoms[bond.from];
+                    const toAtom = this.currentStructure.atoms[bond.to];
+                    
+                    if (!fromAtom || !toAtom) return;
+                    
+                    const geometry = new THREE.CylinderGeometry(0.1, 0.1, bond.length || 1.5);
+                    const material = new THREE.MeshLambertMaterial({ 
+                        color: bond.type === 'disulfide' ? 0xFFD700 : 0x666666 
+                    });
+                    
+                    const mesh = new THREE.Mesh(geometry, material);
+                    
+                    // Position and orient the bond
+                    const fromPos = new THREE.Vector3(...fromAtom.position);
+                    const toPos = new THREE.Vector3(...toAtom.position);
+                    const midPos = fromPos.clone().add(toPos).divideScalar(2);
+                    
+                    mesh.position.copy(midPos);
+                    mesh.lookAt(toPos);
+                    mesh.rotateX(Math.PI / 2);
+                    
+                    this.bondGroup.add(mesh);
+                });
+            }
+            
+            renderCO2Molecules() {
+                if (!this.currentStructure.co2_molecules) return;
+                
+                this.currentStructure.co2_molecules.forEach((co2, index) => {
+                    // CO2 molecule as three connected spheres (O-C-O)
+                    const co2Group = new THREE.Group();
+                    
+                    // Carbon (center)
+                    const carbonGeometry = new THREE.SphereGeometry(0.6, 12, 12);
+                    const carbonMaterial = new THREE.MeshLambertMaterial({ color: 0x333333 });
+                    const carbon = new THREE.Mesh(carbonGeometry, carbonMaterial);
+                    co2Group.add(carbon);
+                    
+                    // Oxygen atoms
+                    const oxygenGeometry = new THREE.SphereGeometry(0.5, 12, 12);
+                    const oxygenMaterial = new THREE.MeshLambertMaterial({ color: 0xFF4444 });
+                    
+                    const oxygen1 = new THREE.Mesh(oxygenGeometry, oxygenMaterial);
+                    oxygen1.position.set(-1.2, 0, 0);
+                    co2Group.add(oxygen1);
+                    
+                    const oxygen2 = new THREE.Mesh(oxygenGeometry, oxygenMaterial);
+                    oxygen2.position.set(1.2, 0, 0);
+                    co2Group.add(oxygen2);
+                    
+                    // Bonds
+                    const bondGeometry = new THREE.CylinderGeometry(0.05, 0.05, 1.2);
+                    const bondMaterial = new THREE.MeshLambertMaterial({ color: 0x666666 });
+                    
+                    const bond1 = new THREE.Mesh(bondGeometry, bondMaterial);
+                    bond1.position.set(-0.6, 0, 0);
+                    bond1.rotateZ(Math.PI / 2);
+                    co2Group.add(bond1);
+                    
+                    const bond2 = new THREE.Mesh(bondGeometry, bondMaterial);
+                    bond2.position.set(0.6, 0, 0);
+                    bond2.rotateZ(Math.PI / 2);
+                    co2Group.add(bond2);
+                    
+                    co2Group.position.set(...co2.position);
+                    co2Group.userData = { type: 'co2', index: index };
+                    
+                    this.co2Group.add(co2Group);
+                });
+            }
+            
+            renderZincIon() {
+                if (!this.currentStructure.zinc_coordination) return;
+                
+                const zincGeometry = new THREE.SphereGeometry(1.2, 16, 16);
+                const zincMaterial = new THREE.MeshLambertMaterial({ 
+                    color: 0xFFD700,
+                    transparent: true,
+                    opacity: 0.9
+                });
+                
+                const zinc = new THREE.Mesh(zincGeometry, zincMaterial);
+                zinc.position.set(...this.currentStructure.zinc_coordination.position);
+                zinc.castShadow = true;
+                zinc.userData = { type: 'zinc' };
+                
+                this.zincGroup.add(zinc);
+                
+                // Add coordination bonds to histidines
+                if (this.currentStructure.zinc_coordination.coordinating_residues) {
+                    this.currentStructure.zinc_coordination.coordinating_residues.forEach(residueIdx => {
+                        const atom = this.currentStructure.atoms[residueIdx];
+                        if (atom) {
+                            const bondGeometry = new THREE.CylinderGeometry(0.08, 0.08, 3);
+                            const bondMaterial = new THREE.MeshLambertMaterial({ 
+                                color: 0x00FF00,
+                                transparent: true,
+                                opacity: 0.6
+                            });
+                            
+                            const bond = new THREE.Mesh(bondGeometry, bondMaterial);
+                            
+                            const zincPos = new THREE.Vector3(...this.currentStructure.zinc_coordination.position);
+                            const atomPos = new THREE.Vector3(...atom.position);
+                            const midPos = zincPos.clone().add(atomPos).divideScalar(2);
+                            
+                            bond.position.copy(midPos);
+                            bond.lookAt(atomPos);
+                            bond.rotateX(Math.PI / 2);
+                            
+                            this.zincGroup.add(bond);
+                        }
+                    });
+                }
+            }
+            
+            centerStructure() {
+                // Calculate bounding box of all visible objects
+                const box = new THREE.Box3();
+                
+                // Include protein atoms
+                if (this.proteinGroup.visible) {
+                    this.proteinGroup.children.forEach(child => {
+                        box.expandByObject(child);
+                    });
+                }
+                
+                // Include CO2 molecules
+                if (this.co2Group.visible) {
+                    this.co2Group.children.forEach(child => {
+                        box.expandByObject(child);
+                    });
+                }
+                
+                // Include zinc ion
+                if (this.zincGroup.visible) {
+                    this.zincGroup.children.forEach(child => {
+                        box.expandByObject(child);
+                    });
+                }
+                
+                // Get center and size
+                const center = box.getCenter(new THREE.Vector3());
+                const size = box.getSize(new THREE.Vector3());
+                
+                // Move all groups to center the structure at origin
+                const offset = center.clone().negate();
+                this.proteinGroup.position.copy(offset);
+                this.co2Group.position.copy(offset);
+                this.zincGroup.position.copy(offset);
+                this.bondGroup.position.copy(offset);
+                
+                // Adjust camera position based on structure size
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const fov = this.camera.fov * (Math.PI / 180);
+                const cameraDistance = maxDim / (2 * Math.tan(fov / 2)) * 1.5; // Add some padding
+                
+                // Position camera to view the structure nicely
+                this.camera.position.set(
+                    cameraDistance * 0.7,
+                    cameraDistance * 0.7,
+                    cameraDistance * 0.7
+                );
+                this.camera.lookAt(0, 0, 0);
+            }
+            
+            updateVisibility() {
+                this.proteinGroup.visible = this.settings.showProtein;
+                this.co2Group.visible = this.settings.showCO2;
+                this.zincGroup.visible = this.settings.showZinc;
+                this.bondGroup.visible = this.settings.showBonds;
+            }
+            
+            updateAtomSizes() {
+                this.proteinGroup.children.forEach(child => {
+                    if (child.userData.type === 'atom') {
+                        const originalRadius = child.userData.atom.radius;
+                        child.scale.setScalar(this.settings.atomSize);
+                    }
+                });
+            }
+            
+            setVisualizationStyle(style) {
+                this.settings.visualStyle = style;
+                
+                // Update button states
+                document.querySelectorAll('.toggle-btn').forEach(btn => {
+                    if (btn.id.includes('Btn') && (btn.id.includes('ballStick') || btn.id.includes('spaceFill') || btn.id.includes('backbone'))) {
+                        btn.classList.remove('active');
+                    }
+                });
+                document.getElementById(style + 'Btn').classList.add('active');
+                
+                // Apply style changes
+                this.applyVisualizationStyle();
+            }
+            
+            applyVisualizationStyle() {
+                switch (this.settings.visualStyle) {
+                    case 'ballStick':
+                        this.proteinGroup.children.forEach(child => {
+                            if (child.userData.type === 'atom') {
+                                child.material.opacity = 0.8;
+                                child.scale.setScalar(this.settings.atomSize);
+                            }
+                        });
+                        this.bondGroup.visible = true;
+                        break;
+                        
+                    case 'spaceFill':
+                        this.proteinGroup.children.forEach(child => {
+                            if (child.userData.type === 'atom') {
+                                child.material.opacity = 1.0;
+                                child.scale.setScalar(this.settings.atomSize * 2);
+                            }
+                        });
+                        this.bondGroup.visible = false;
+                        break;
+                        
+                    case 'backbone':
+                        this.proteinGroup.children.forEach(child => {
+                            if (child.userData.type === 'atom') {
+                                child.material.opacity = 0.3;
+                                child.scale.setScalar(this.settings.atomSize * 0.5);
+                            }
+                        });
+                        this.bondGroup.visible = true;
+                        break;
+                }
+            }
+            
+            toggleElement(element) {
+                const btn = document.getElementById(element + 'Btn');
+                
+                switch (element) {
+                    case 'protein':
+                        this.settings.showProtein = !this.settings.showProtein;
+                        break;
+                    case 'co2':
+                        this.settings.showCO2 = !this.settings.showCO2;
+                        break;
+                    case 'zinc':
+                        this.settings.showZinc = !this.settings.showZinc;
+                        break;
+                    case 'bonds':
+                        this.settings.showBonds = !this.settings.showBonds;
+                        break;
+                }
+                
+                btn.classList.toggle('active');
+                this.updateVisibility();
+            }
+            
+            toggleAutoRotate() {
+                this.settings.autoRotate = !this.settings.autoRotate;
+                document.getElementById('autoRotateBtn').classList.toggle('active');
+            }
+            
+            toggleHighlightSites() {
+                this.settings.highlightSites = !this.settings.highlightSites;
+                document.getElementById('highlightSitesBtn').classList.toggle('active');
+                
+                // Highlight functional sites
+                this.proteinGroup.children.forEach(child => {
+                    if (child.userData.type === 'atom') {
+                        const atom = child.userData.atom;
+                        if (this.settings.highlightSites && (atom.type === 'zinc_binding' || atom.type === 'catalytic')) {
+                            child.material.emissive.setHex(0x222222);
+                            child.scale.setScalar(this.settings.atomSize * 1.5);
+                        } else {
+                            child.material.emissive.setHex(0x000000);
+                            child.scale.setScalar(this.settings.atomSize);
+                        }
+                    }
+                });
+            }
+            
+            resetView() {
+                // Center the structure first
+                this.centerStructure();
+                
+                // Reset rotation
+                this.scene.rotation.set(0, 0, 0);
+                
+                // Reset auto rotate
+                this.settings.autoRotate = false;
+                document.getElementById('autoRotateBtn').classList.remove('active');
+            }
+            
+            updateInfoPanel() {
+                if (!this.currentStructure) return;
+                
+                const info = document.getElementById('structureInfo');
+                const stats = document.getElementById('structureStats');
+                
+                const metadata = this.currentStructure.metadata || {};
+                const statistics = this.currentStructure.statistics || {};
+                
+                info.innerHTML = `
+                    <div><strong>Name:</strong> ${metadata.name || 'Unknown'}</div>
+                    <div><strong>CO₂ Affinity:</strong> ${(metadata.co2_affinity * 100).toFixed(1)}%</div>
+                    <div><strong>Sequence Length:</strong> ${this.currentStructure.sequence?.length || 0}</div>
+                    ${metadata.improvement ? `<div><strong>Improvement:</strong> ${metadata.improvement}</div>` : ''}
+                `;
+                
+                stats.innerHTML = `
+                    <div><strong>Zinc Binding Sites:</strong> ${statistics.zinc_binding_sites || 0}</div>
+                    <div><strong>Catalytic Sites:</strong> ${statistics.catalytic_sites || 0}</div>
+                    <div><strong>CO₂ Molecules:</strong> ${statistics.bound_co2 || 0}</div>
+                    <div><strong>Structural Sites:</strong> ${statistics.structural_sites || 0}</div>
+                `;
+            }
+            
+            animate() {
+                requestAnimationFrame(() => this.animate());
+                
+                // Auto rotation
+                if (this.settings.autoRotate) {
+                    this.scene.rotation.y += 0.01 * this.settings.rotationSpeed;
+                }
+                
+                this.renderer.render(this.scene, this.camera);
+            }
+            
+            onWindowResize() {
+                this.camera.aspect = window.innerWidth / window.innerHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+        }
+        
+        // Initialize viewer when page loads
+        window.addEventListener('load', () => {
+            new Protein3DViewer();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+
+Binder Optimization Results:
+Accession	Status	Best Binder	PDB	Best Score
+0	O64462	Processed	MRVLVALLGLATQASACFGVARNVT	https://alphafold.ebi.ac.uk/files/AF-O64462-F1...	0.48

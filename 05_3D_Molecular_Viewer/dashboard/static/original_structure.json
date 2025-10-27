@@ -1,0 +1,1303 @@
+{
+  "sequence": "MHHVAALLALAVCANACSHVYFADSDLHDHGRRLTAPIHEEHDHGHVYFADSDLHDHGRRLT",
+  "atoms": [
+    {
+      "id": 0,
+      "amino_acid": "M",
+      "position": [
+        -24.741724431242748,
+        22.788672970841958,
+        -0.11977568214934381
+      ],
+      "color": "#E6E600",
+      "type": "backbone",
+      "radius": 0.62,
+      "charge": 0
+    },
+    {
+      "id": 1,
+      "amino_acid": "H",
+      "position": [
+        -23.134591885653766,
+        21.520047055548858,
+        0.3426780870176829
+      ],
+      "color": "#8282D2",
+      "type": "zinc_binding",
+      "radius": 0.59,
+      "charge": 0.5
+    },
+    {
+      "id": 2,
+      "amino_acid": "H",
+      "position": [
+        -21.459673832732133,
+        20.307167217411042,
+        0.702847817696629
+      ],
+      "color": "#8282D2",
+      "type": "zinc_binding",
+      "radius": 0.59,
+      "charge": 0.5
+    },
+    {
+      "id": 3,
+      "amino_acid": "V",
+      "position": [
+        -19.793946439152883,
+        19.09500452852963,
+        1.1055438403052629
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.525,
+      "charge": 0
+    },
+    {
+      "id": 4,
+      "amino_acid": "A",
+      "position": [
+        -18.413678588356728,
+        17.602082773669366,
+        1.62726744010201
+      ],
+      "color": "#C8C8C8",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 5,
+      "amino_acid": "A",
+      "position": [
+        -17.430340793566824,
+        15.993639999810986,
+        2.5503648592414234
+      ],
+      "color": "#C8C8C8",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 6,
+      "amino_acid": "L",
+      "position": [
+        -15.794262667632706,
+        15.245505196804086,
+        3.6318882769403165
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.62,
+      "charge": 0
+    },
+    {
+      "id": 7,
+      "amino_acid": "L",
+      "position": [
+        -14.610776163169238,
+        14.091140766331138,
+        4.9253149954184305
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.62,
+      "charge": 0
+    },
+    {
+      "id": 8,
+      "amino_acid": "A",
+      "position": [
+        -14.380313346824057,
+        12.031927789564541,
+        5.260991964035069
+      ],
+      "color": "#C8C8C8",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 9,
+      "amino_acid": "L",
+      "position": [
+        -14.156698067395991,
+        10.093258109468504,
+        4.48787729017097
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.62,
+      "charge": 0
+    },
+    {
+      "id": 10,
+      "amino_acid": "A",
+      "position": [
+        -14.188365488073512,
+        7.9948060807763035,
+        4.528454111221708
+      ],
+      "color": "#C8C8C8",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 11,
+      "amino_acid": "V",
+      "position": [
+        -14.279376700697672,
+        5.931815515323307,
+        4.151708697593412
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.525,
+      "charge": 0
+    },
+    {
+      "id": 12,
+      "amino_acid": "C",
+      "position": [
+        -14.93696059592715,
+        4.686580614105998,
+        2.5950701132757463
+      ],
+      "color": "#E6E600",
+      "type": "structural",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 13,
+      "amino_acid": "A",
+      "position": [
+        -16.184964235239693,
+        3.3286324804797456,
+        1.5927657666299861
+      ],
+      "color": "#C8C8C8",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 14,
+      "amino_acid": "N",
+      "position": [
+        -17.54675278654753,
+        2.8403031615784298,
+        0.07183952302392786
+      ],
+      "color": "#00DCDC",
+      "type": "co2_binding",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 15,
+      "amino_acid": "A",
+      "position": [
+        -17.922382952230286,
+        1.2911742969367552,
+        -1.2939027513545502
+      ],
+      "color": "#C8C8C8",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 16,
+      "amino_acid": "C",
+      "position": [
+        -17.986053365848292,
+        -0.5349042515806073,
+        -2.3271178469352263
+      ],
+      "color": "#E6E600",
+      "type": "structural",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 17,
+      "amino_acid": "S",
+      "position": [
+        -17.890585436318183,
+        -2.4059951576457004,
+        -3.273719619769557
+      ],
+      "color": "#FA9600",
+      "type": "co2_binding",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 18,
+      "amino_acid": "H",
+      "position": [
+        -17.474411820061764,
+        -4.441544038673656,
+        -2.974570000449648
+      ],
+      "color": "#8282D2",
+      "type": "zinc_binding",
+      "radius": 0.59,
+      "charge": 0.5
+    },
+    {
+      "id": 19,
+      "amino_acid": "V",
+      "position": [
+        -17.23243837127069,
+        -6.517769246137452,
+        -3.166632382589976
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.525,
+      "charge": 0
+    },
+    {
+      "id": 20,
+      "amino_acid": "Y",
+      "position": [
+        -16.15765057454653,
+        -8.261934776851312,
+        -3.6236531853373153
+      ],
+      "color": "#3232AA",
+      "type": "backbone",
+      "radius": 0.705,
+      "charge": 0
+    },
+    {
+      "id": 21,
+      "amino_acid": "F",
+      "position": [
+        -14.556497423706931,
+        -9.584139941562874,
+        -3.9306260027460396
+      ],
+      "color": "#3232AA",
+      "type": "backbone",
+      "radius": 0.675,
+      "charge": 0
+    },
+    {
+      "id": 22,
+      "amino_acid": "A",
+      "position": [
+        -12.63122719216848,
+        -8.970363641828838,
+        -3.362503295843704
+      ],
+      "color": "#C8C8C8",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 23,
+      "amino_acid": "D",
+      "position": [
+        -10.890313504818572,
+        -8.152591475658705,
+        -2.521897301279956
+      ],
+      "color": "#E60A0A",
+      "type": "catalytic",
+      "radius": 0.5,
+      "charge": -1
+    },
+    {
+      "id": 24,
+      "amino_acid": "S",
+      "position": [
+        -9.491550470829589,
+        -7.218496887250062,
+        -1.2660790440018659
+      ],
+      "color": "#FA9600",
+      "type": "co2_binding",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 25,
+      "amino_acid": "D",
+      "position": [
+        -8.865045859095405,
+        -5.327430416103032,
+        -0.6046338128294939
+      ],
+      "color": "#E60A0A",
+      "type": "catalytic",
+      "radius": 0.5,
+      "charge": -1
+    },
+    {
+      "id": 26,
+      "amino_acid": "L",
+      "position": [
+        -7.60779379539052,
+        -3.928506476817309,
+        0.32728854502253074
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.62,
+      "charge": 0
+    },
+    {
+      "id": 27,
+      "amino_acid": "H",
+      "position": [
+        -5.796421944898692,
+        -2.9802337508320704,
+        0.80253698222111
+      ],
+      "color": "#8282D2",
+      "type": "zinc_binding",
+      "radius": 0.59,
+      "charge": 0.5
+    },
+    {
+      "id": 28,
+      "amino_acid": "D",
+      "position": [
+        -3.7217549550944136,
+        -2.6654504267882593,
+        0.7494468609014597
+      ],
+      "color": "#E60A0A",
+      "type": "catalytic",
+      "radius": 0.5,
+      "charge": -1
+    },
+    {
+      "id": 29,
+      "amino_acid": "H",
+      "position": [
+        -1.6845209942554142,
+        -2.243405850093984,
+        1.0282055105404382
+      ],
+      "color": "#8282D2",
+      "type": "zinc_binding",
+      "radius": 0.59,
+      "charge": 0.5
+    },
+    {
+      "id": 30,
+      "amino_acid": "G",
+      "position": [
+        0.38577820143753266,
+        -1.903175954759281,
+        0.9629745417064314
+      ],
+      "color": "#EBEBEB",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 31,
+      "amino_acid": "R",
+      "position": [
+        2.1987094543269134,
+        -0.84781201296791,
+        0.8878916320340139
+      ],
+      "color": "#145AFF",
+      "type": "backbone",
+      "radius": 0.74,
+      "charge": 1
+    },
+    {
+      "id": 32,
+      "amino_acid": "R",
+      "position": [
+        3.4815439119700424,
+        0.7375945293156445,
+        0.39092878570713563
+      ],
+      "color": "#145AFF",
+      "type": "backbone",
+      "radius": 0.74,
+      "charge": 1
+    },
+    {
+      "id": 33,
+      "amino_acid": "L",
+      "position": [
+        5.514554970629583,
+        1.156296027317507,
+        0.07835029700331712
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.62,
+      "charge": 0
+    },
+    {
+      "id": 34,
+      "amino_acid": "T",
+      "position": [
+        7.523888917769191,
+        1.4824712087118965,
+        0.5905387980222826
+      ],
+      "color": "#FA9600",
+      "type": "co2_binding",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 35,
+      "amino_acid": "A",
+      "position": [
+        8.944568623190813,
+        0.873662743350297,
+        2.010810478993408
+      ],
+      "color": "#C8C8C8",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 36,
+      "amino_acid": "P",
+      "position": [
+        10.103484668580283,
+        1.0161468400648634,
+        3.7551619638105085
+      ],
+      "color": "#DC9682",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 37,
+      "amino_acid": "I",
+      "position": [
+        12.058833346853662,
+        0.9073996142842541,
+        4.510764907108732
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.62,
+      "charge": 0
+    },
+    {
+      "id": 38,
+      "amino_acid": "H",
+      "position": [
+        13.856288954818709,
+        1.1360511236915194,
+        5.570492251901786
+      ],
+      "color": "#8282D2",
+      "type": "zinc_binding",
+      "radius": 0.59,
+      "charge": 0.5
+    },
+    {
+      "id": 39,
+      "amino_acid": "E",
+      "position": [
+        15.331249488129764,
+        2.368133707947262,
+        6.414657017459915
+      ],
+      "color": "#E60A0A",
+      "type": "catalytic",
+      "radius": 0.545,
+      "charge": -1
+    },
+    {
+      "id": 40,
+      "amino_acid": "E",
+      "position": [
+        17.39118028551492,
+        1.9654606123111107,
+        6.388394711843075
+      ],
+      "color": "#E60A0A",
+      "type": "catalytic",
+      "radius": 0.545,
+      "charge": -1
+    },
+    {
+      "id": 41,
+      "amino_acid": "H",
+      "position": [
+        19.469040714582004,
+        1.7154160870606059,
+        6.550023896617279
+      ],
+      "color": "#8282D2",
+      "type": "zinc_binding",
+      "radius": 0.59,
+      "charge": 0.5
+    },
+    {
+      "id": 42,
+      "amino_acid": "D",
+      "position": [
+        21.553622347952476,
+        1.5357858863466176,
+        6.381493111692675
+      ],
+      "color": "#E60A0A",
+      "type": "catalytic",
+      "radius": 0.5,
+      "charge": -1
+    },
+    {
+      "id": 43,
+      "amino_acid": "H",
+      "position": [
+        23.282109949604983,
+        1.185072854781706,
+        5.243301036036959
+      ],
+      "color": "#8282D2",
+      "type": "zinc_binding",
+      "radius": 0.59,
+      "charge": 0.5
+    },
+    {
+      "id": 44,
+      "amino_acid": "G",
+      "position": [
+        24.4922121488561,
+        0.6605080286046907,
+        3.610317683039494
+      ],
+      "color": "#EBEBEB",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 45,
+      "amino_acid": "H",
+      "position": [
+        25.0,
+        -0.13538399047224275,
+        1.7355223307779026
+      ],
+      "color": "#8282D2",
+      "type": "zinc_binding",
+      "radius": 0.59,
+      "charge": 0.5
+    },
+    {
+      "id": 46,
+      "amino_acid": "V",
+      "position": [
+        24.413125526819197,
+        -0.4502586000643902,
+        -0.2551013286877187
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.525,
+      "charge": 0
+    },
+    {
+      "id": 47,
+      "amino_acid": "Y",
+      "position": [
+        23.057912994365168,
+        -1.4279375192535309,
+        -1.5254135515345502
+      ],
+      "color": "#3232AA",
+      "type": "backbone",
+      "radius": 0.705,
+      "charge": 0
+    },
+    {
+      "id": 48,
+      "amino_acid": "F",
+      "position": [
+        21.531521207424706,
+        -1.50592268028002,
+        -2.9642313468379538
+      ],
+      "color": "#3232AA",
+      "type": "backbone",
+      "radius": 0.675,
+      "charge": 0
+    },
+    {
+      "id": 49,
+      "amino_acid": "A",
+      "position": [
+        19.950693704813403,
+        -2.1013371355689294,
+        -4.21027157655852
+      ],
+      "color": "#C8C8C8",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 50,
+      "amino_acid": "D",
+      "position": [
+        18.496048680062696,
+        -2.9121328282938785,
+        -5.488069845961031
+      ],
+      "color": "#E60A0A",
+      "type": "catalytic",
+      "radius": 0.5,
+      "charge": -1
+    },
+    {
+      "id": 51,
+      "amino_acid": "S",
+      "position": [
+        17.14812550208618,
+        -4.4957569560879005,
+        -5.773355577822391
+      ],
+      "color": "#FA9600",
+      "type": "co2_binding",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 52,
+      "amino_acid": "D",
+      "position": [
+        15.44409574017455,
+        -5.693772403473637,
+        -6.032569348687108
+      ],
+      "color": "#E60A0A",
+      "type": "catalytic",
+      "radius": 0.5,
+      "charge": -1
+    },
+    {
+      "id": 53,
+      "amino_acid": "L",
+      "position": [
+        13.765576241127478,
+        -6.862742735949147,
+        -6.5039830457433485
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.62,
+      "charge": 0
+    },
+    {
+      "id": 54,
+      "amino_acid": "H",
+      "position": [
+        12.019177289271104,
+        -8.00451405115117,
+        -6.733328168643672
+      ],
+      "color": "#8282D2",
+      "type": "zinc_binding",
+      "radius": 0.59,
+      "charge": 0.5
+    },
+    {
+      "id": 55,
+      "amino_acid": "D",
+      "position": [
+        10.622440053033495,
+        -9.567749169412009,
+        -6.625758290867844
+      ],
+      "color": "#E60A0A",
+      "type": "catalytic",
+      "radius": 0.5,
+      "charge": -1
+    },
+    {
+      "id": 56,
+      "amino_acid": "H",
+      "position": [
+        9.729142581926437,
+        -11.222357157899195,
+        -5.692783343074776
+      ],
+      "color": "#8282D2",
+      "type": "zinc_binding",
+      "radius": 0.59,
+      "charge": 0.5
+    },
+    {
+      "id": 57,
+      "amino_acid": "G",
+      "position": [
+        9.011201054082122,
+        -12.681550561505496,
+        -4.3655814766920535
+      ],
+      "color": "#EBEBEB",
+      "type": "backbone",
+      "radius": 0.5,
+      "charge": 0
+    },
+    {
+      "id": 58,
+      "amino_acid": "R",
+      "position": [
+        8.024898222623113,
+        -14.487946888844048,
+        -3.9529202913412886
+      ],
+      "color": "#145AFF",
+      "type": "backbone",
+      "radius": 0.74,
+      "charge": 1
+    },
+    {
+      "id": 59,
+      "amino_acid": "R",
+      "position": [
+        8.341192483910536,
+        -16.53504081872305,
+        -3.6130458980861646
+      ],
+      "color": "#145AFF",
+      "type": "backbone",
+      "radius": 0.74,
+      "charge": 1
+    },
+    {
+      "id": 60,
+      "amino_acid": "L",
+      "position": [
+        9.154051834308689,
+        -18.065102140656997,
+        -2.4280048657782554
+      ],
+      "color": "#0F820F",
+      "type": "backbone",
+      "radius": 0.62,
+      "charge": 0
+    },
+    {
+      "id": 61,
+      "amino_acid": "T",
+      "position": [
+        9.664805582500358,
+        -19.44849787778173,
+        -0.9341852435096796
+      ],
+      "color": "#FA9600",
+      "type": "co2_binding",
+      "radius": 0.5,
+      "charge": 0
+    }
+  ],
+  "bonds": [
+    {
+      "from": 0,
+      "to": 1,
+      "type": "backbone",
+      "length": 2.0990831857411862
+    },
+    {
+      "from": 1,
+      "to": 2,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "type": "backbone",
+      "length": 2.0990831857411827
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "type": "backbone",
+      "length": 2.099083185741184
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "type": "backbone",
+      "length": 2.0990831857411836
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "type": "backbone",
+      "length": 2.0990831857411854
+    },
+    {
+      "from": 6,
+      "to": 7,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 7,
+      "to": 8,
+      "type": "backbone",
+      "length": 2.099083185741184
+    },
+    {
+      "from": 8,
+      "to": 9,
+      "type": "backbone",
+      "length": 2.0990831857411836
+    },
+    {
+      "from": 9,
+      "to": 10,
+      "type": "backbone",
+      "length": 2.099083185741185
+    },
+    {
+      "from": 10,
+      "to": 11,
+      "type": "backbone",
+      "length": 2.0990831857411822
+    },
+    {
+      "from": 11,
+      "to": 12,
+      "type": "backbone",
+      "length": 2.0990831857411845
+    },
+    {
+      "from": 12,
+      "to": 13,
+      "type": "backbone",
+      "length": 2.099083185741184
+    },
+    {
+      "from": 13,
+      "to": 14,
+      "type": "backbone",
+      "length": 2.0990831857411822
+    },
+    {
+      "from": 14,
+      "to": 15,
+      "type": "backbone",
+      "length": 2.099083185741184
+    },
+    {
+      "from": 15,
+      "to": 16,
+      "type": "backbone",
+      "length": 2.0990831857411822
+    },
+    {
+      "from": 16,
+      "to": 17,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 17,
+      "to": 18,
+      "type": "backbone",
+      "length": 2.0990831857411827
+    },
+    {
+      "from": 18,
+      "to": 19,
+      "type": "backbone",
+      "length": 2.099083185741182
+    },
+    {
+      "from": 19,
+      "to": 20,
+      "type": "backbone",
+      "length": 2.0990831857411836
+    },
+    {
+      "from": 20,
+      "to": 21,
+      "type": "backbone",
+      "length": 2.0990831857411827
+    },
+    {
+      "from": 21,
+      "to": 22,
+      "type": "backbone",
+      "length": 2.0990831857411862
+    },
+    {
+      "from": 22,
+      "to": 23,
+      "type": "backbone",
+      "length": 2.0990831857411827
+    },
+    {
+      "from": 23,
+      "to": 24,
+      "type": "backbone",
+      "length": 2.0990831857411836
+    },
+    {
+      "from": 24,
+      "to": 25,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 25,
+      "to": 26,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 26,
+      "to": 27,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 27,
+      "to": 28,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 28,
+      "to": 29,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 29,
+      "to": 30,
+      "type": "backbone",
+      "length": 2.0990831857411822
+    },
+    {
+      "from": 30,
+      "to": 31,
+      "type": "backbone",
+      "length": 2.0990831857411836
+    },
+    {
+      "from": 31,
+      "to": 32,
+      "type": "backbone",
+      "length": 2.099083185741182
+    },
+    {
+      "from": 32,
+      "to": 33,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 33,
+      "to": 34,
+      "type": "backbone",
+      "length": 2.0990831857411827
+    },
+    {
+      "from": 34,
+      "to": 35,
+      "type": "backbone",
+      "length": 2.0990831857411845
+    },
+    {
+      "from": 35,
+      "to": 36,
+      "type": "backbone",
+      "length": 2.0990831857411836
+    },
+    {
+      "from": 36,
+      "to": 37,
+      "type": "backbone",
+      "length": 2.099083185741187
+    },
+    {
+      "from": 37,
+      "to": 38,
+      "type": "backbone",
+      "length": 2.0990831857411827
+    },
+    {
+      "from": 38,
+      "to": 39,
+      "type": "backbone",
+      "length": 2.0990831857411827
+    },
+    {
+      "from": 39,
+      "to": 40,
+      "type": "backbone",
+      "length": 2.099083185741185
+    },
+    {
+      "from": 40,
+      "to": 41,
+      "type": "backbone",
+      "length": 2.0990831857411862
+    },
+    {
+      "from": 41,
+      "to": 42,
+      "type": "backbone",
+      "length": 2.099083185741184
+    },
+    {
+      "from": 42,
+      "to": 43,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 43,
+      "to": 44,
+      "type": "backbone",
+      "length": 2.099083185741184
+    },
+    {
+      "from": 44,
+      "to": 45,
+      "type": "backbone",
+      "length": 2.0990831857411845
+    },
+    {
+      "from": 45,
+      "to": 46,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 46,
+      "to": 47,
+      "type": "backbone",
+      "length": 2.0990831857411862
+    },
+    {
+      "from": 47,
+      "to": 48,
+      "type": "backbone",
+      "length": 2.099083185741187
+    },
+    {
+      "from": 48,
+      "to": 49,
+      "type": "backbone",
+      "length": 2.099083185741184
+    },
+    {
+      "from": 49,
+      "to": 50,
+      "type": "backbone",
+      "length": 2.0990831857411867
+    },
+    {
+      "from": 50,
+      "to": 51,
+      "type": "backbone",
+      "length": 2.0990831857411836
+    },
+    {
+      "from": 51,
+      "to": 52,
+      "type": "backbone",
+      "length": 2.099083185741185
+    },
+    {
+      "from": 52,
+      "to": 53,
+      "type": "backbone",
+      "length": 2.099083185741187
+    },
+    {
+      "from": 53,
+      "to": 54,
+      "type": "backbone",
+      "length": 2.099083185741186
+    },
+    {
+      "from": 54,
+      "to": 55,
+      "type": "backbone",
+      "length": 2.0990831857411836
+    },
+    {
+      "from": 55,
+      "to": 56,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 56,
+      "to": 57,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 57,
+      "to": 58,
+      "type": "backbone",
+      "length": 2.099083185741186
+    },
+    {
+      "from": 58,
+      "to": 59,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 59,
+      "to": 60,
+      "type": "backbone",
+      "length": 2.0990831857411836
+    },
+    {
+      "from": 60,
+      "to": 61,
+      "type": "backbone",
+      "length": 2.099083185741183
+    },
+    {
+      "from": 12,
+      "to": 16,
+      "type": "disulfide",
+      "length": 7.796717593822769
+    }
+  ],
+  "functional_sites": {
+    "zinc_binding": [
+      1,
+      2,
+      18,
+      27,
+      29,
+      38,
+      41,
+      43,
+      45,
+      54,
+      56
+    ],
+    "catalytic": [
+      23,
+      25,
+      28,
+      39,
+      40,
+      42,
+      50,
+      52,
+      55
+    ],
+    "co2_binding": [
+      14,
+      17,
+      24,
+      34,
+      51,
+      61
+    ],
+    "structural": [
+      12,
+      16
+    ]
+  },
+  "zinc_coordination": {
+    "position": [
+      -16.252811159145033,
+      8.23965582118921,
+      -0.26978384360687707
+    ],
+    "coordinating_residues": [
+      1,
+      2,
+      18,
+      27
+    ],
+    "coordination_number": 4,
+    "geometry": "tetrahedral"
+  },
+  "co2_molecules": [
+    {
+      "position": [
+        -20.134591885653766,
+        21.520047055548858,
+        2.6219859037839344
+      ],
+      "binding_site": 1,
+      "amino_acid": "H",
+      "binding_strength": 0.7407959790562219
+    },
+    {
+      "position": [
+        -22.959673832732133,
+        22.905243428764358,
+        2.5039791396046436
+      ],
+      "binding_site": 2,
+      "amino_acid": "H",
+      "binding_strength": 0.7498194953546047
+    },
+    {
+      "position": [
+        -18.974411820061764,
+        -7.039620250026971,
+        -0.8287783220552418
+      ],
+      "binding_site": 18,
+      "amino_acid": "H",
+      "binding_strength": 0.9280500572025211
+    },
+    {
+      "position": [
+        -14.890313504818572,
+        -8.152591475658705,
+        -1.5198715398128715
+      ],
+      "binding_site": 23,
+      "amino_acid": "D",
+      "binding_strength": 0.5861695655690188
+    },
+    {
+      "position": [
+        -8.865045859095405,
+        -9.32743041610303,
+        0.5609625295383691
+      ],
+      "binding_site": 25,
+      "amino_acid": "D",
+      "binding_strength": 0.758182625110647
+    }
+  ],
+  "metadata": {
+    "name": "Original Carbonic Anhydrase",
+    "co2_affinity": 0.7427,
+    "source": "Chlorella sorokiniana"
+  },
+  "statistics": {
+    "total_residues": 62,
+    "zinc_binding_sites": 11,
+    "catalytic_sites": 9,
+    "co2_binding_sites": 6,
+    "structural_sites": 2,
+    "bound_co2": 5
+  }
+}
