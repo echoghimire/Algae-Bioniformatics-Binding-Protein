@@ -13,7 +13,7 @@ sys.path.append('.')
 # Import our modules
 from co2_binding_analyzer import CO2BindingAnalyzer
 from enhanced_ga_protein_optimizer import EnhancedGeneticAlgorithm, ProteinAnalyzer
-from advanced_visualizer import ProteinOptimizationVisualizer
+from mock_data.advanced_visualizer import ProteinOptimizationVisualizer
 
 def run_enhanced_demo_with_visualization():
     print("🧬 ENHANCED ALGAE PROTEIN OPTIMIZATION WITH ADVANCED VISUALIZATION")

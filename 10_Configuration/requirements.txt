@@ -1,0 +1,136 @@
+# 🧬 Algae Protein Optimization System - Complete Dependencies (Updated October 2025)
+# Enhanced genetic algorithm for optimizing proteins for CO2 absorption
+# Reorganized with clear separation of real scientific implementations and mock data demonstrations
+# Now including quantum mechanical calculations for ultra-accurate binding predictions
+
+# ===== CORE SCIENTIFIC COMPUTING =====
+numpy>=1.24.0
+pandas>=2.0.0  
+scipy>=1.10.0
+
+# ===== BIOINFORMATICS & PROTEIN ANALYSIS =====
+biopython>=1.81
+deap>=1.4.1
+
+# ===== MACHINE LEARNING & OPTIMIZATION =====
+scikit-learn>=1.3.0
+
+# ===== VISUALIZATION & PLOTTING =====
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# ===== 3D MOLECULAR VISUALIZATION =====
+py3Dmol>=2.0.0
+
+# ===== WEB FRAMEWORK & DASHBOARDS =====
+flask>=2.3.0
+plotly-dash>=2.12.0
+
+# ===== QUANTUM CHEMISTRY (PHASE 6 - REAL SCIENCE) =====
+# Core quantum chemistry package for DFT calculations (when available)
+pyscf>=2.3.0
+
+# Alternative chemistry packages for real calculations
+rdkit>=2023.9.1            # Real molecular property calculations (recommended)
+
+# Geometry optimization for quantum calculations  
+geometric>=1.0.0
+
+# Basis set management
+basis_set_exchange>=0.9.0
+
+# ===== WEB REQUESTS & UTILITIES =====
+requests>=2.31.0
+pathlib2>=2.3.7
+
+# ===== PERFORMANCE OPTIMIZATION =====
+numba>=0.57.0              # JIT compilation for speed
+joblib>=1.3.0              # Parallel processing
+
+# ===== SYSTEM MONITORING & PROGRESS =====
+psutil>=5.9.0              # System resource monitoring
+tqdm>=4.65.0               # Progress bars
+rich>=13.0.0               # Enhanced terminal output
+
+# ===== DEVELOPMENT & TESTING =====
+jupyter>=1.0.0             # Interactive notebooks
+pytest>=7.4.0             # Testing framework
+pytest-cov>=4.1.0         # Coverage testing
+black>=23.0.0              # Code formatting
+flake8>=6.0.0              # Code linting
+
+# ===== ENHANCED FILE I/O =====
+h5py>=3.9.0                # HDF5 scientific data format
+openpyxl>=3.1.0            # Excel file support
+xlsxwriter>=3.1.0          # Excel writing capabilities
+
+# ===== DATA VALIDATION =====
+jsonschema>=4.18.0         # JSON schema validation
+pydantic>=2.0.0            # Data validation and parsing
+
+# ===== OPTIONAL QUANTUM ENHANCEMENTS =====
+# Uncomment for advanced quantum computing features:
+# qiskit>=0.44.0           # IBM quantum computing
+# pennylane>=0.32.0        # Quantum machine learning
+# cirq>=1.2.0              # Google quantum computing framework
+
+# ===== OPTIONAL PERFORMANCE PACKAGES =====
+# Uncomment for maximum performance:
+# cython>=3.0.0            # C extensions compilation
+# intel-numpy             # Intel optimized NumPy (conda only)
+# mkl>=2023.0              # Intel Math Kernel Library
+
+# ===== INSTALLATION NOTES (Updated October 2025) =====
+# 
+# REORGANIZED STRUCTURE:
+# ---------------------
+# The project now clearly separates:
+# - 🧬 REAL SCIENCE: Production-ready implementations with genuine calculations
+# - 🎭 MOCK DATA: Educational demonstrations in mock_data/ directories
+# 
+# QUANTUM CHEMISTRY SETUP:
+# ------------------------
+# Multiple packages supported for real quantum calculations:
+# 
+# 1. RDKit (Recommended for most users):
+#    conda install -c conda-forge rdkit
+#    pip install rdkit  # Alternative
+# 
+# 2. PySCF (Advanced quantum chemistry):
+#    conda install -c conda-forge pyscf  # Recommended
+#    pip install pyscf --verbose         # May require compilation
+# 
+# 3. Automatic fallback:
+#    - Real calculations when libraries available
+#    - Educational simulations when libraries unavailable
+# 
+# SYSTEM REQUIREMENTS:
+# -------------------
+# - Python 3.8+ (3.9+ recommended for quantum features)
+# - 8GB+ RAM (16GB+ recommended for quantum calculations)  
+# - Modern CPU with multiple cores
+# - 5GB+ disk space for dependencies and results
+# 
+# PROJECT ORGANIZATION:
+# --------------------
+# Each phase now contains:
+# - Main directory: Real scientific implementations only
+# - mock_data/ subdirectory: Educational demonstrations and prototypes
+# 
+# For assessment: Focus on files in main phase directories
+# For learning: Explore mock_data/ directories for educational examples
+# 
+# GPU ACCELERATION:
+# ----------------
+# For future quantum ML features, consider:
+# - CUDA-capable GPU
+# - PyTorch or TensorFlow with GPU support
+# 
+# TROUBLESHOOTING:
+# ---------------
+# - Windows users: Use conda for complex packages like PySCF
+# - macOS: May need Xcode command line tools
+# - Linux: Usually most compatible, ensure build-essential installed
+# - Memory issues: Reduce population size or use smaller quantum basis sets
+# - Visualization issues: Ensure modern browser for interactive plots

@@ -16,7 +16,9 @@ import time
 # Import our existing optimization modules
 try:
     from enhanced_ga_protein_optimizer import EnhancedGeneticAlgorithm, ProteinAnalyzer
-    from advanced_visualizer import ProteinOptimizationVisualizer
+    # Import from the scientific visualizer instead of the mock version
+    # from advanced_visualizer import ProteinOptimizationVisualizer
+    from scientific_dashboard import ScientificDashboardServer
     from co2_binding_analyzer import CO2BindingAnalyzer
     from algae_protein_optimizer import AlgaeProteinOptimizer
 except ImportError as e:

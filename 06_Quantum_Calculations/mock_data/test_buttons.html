@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Dashboard Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+        .btn-quantum {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+        }
+        .status-display {
+            background: #1f2937;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: monospace;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔬 Quantum Dashboard Button Test</h1>
+    
+    <div class="status-display" id="status-display">
+        Testing button functionality...
+    </div>
+    
+    <button class="btn btn-quantum" onclick="startOptimization()">
+        🚀 Start Quantum Optimization
+    </button>
+    
+    <button class="btn" onclick="generateTestStructure()">
+        🧪 Generate Test Structure
+    </button>
+    
+    <button class="btn" onclick="toggleAnalysis('electron-density')">
+        📊 Toggle Analysis
+    </button>
+    
+    <button class="btn" onclick="toggleHelp()">
+        ❓ Help Guide
+    </button>
+    
+    <div id="electron-density-expanded" style="display: none; margin-top: 20px; padding: 15px; background: #f9fafb; border-radius: 10px;">
+        <h4>🔬 Analysis Content</h4>
+        <p>This is the expanded analysis content!</p>
+    </div>
+    
+    <div id="help-panel" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+        <h3>Help Panel</h3>
+        <p>This is the help content!</p>
+        <button onclick="toggleHelp()">Close</button>
+    </div>
+
+    <script>
+        console.log("🔬 JavaScript loaded successfully");
+        
+        // Test the main functions
+        async function startOptimization() {
+            console.log("🚀 startOptimization called");
+            document.getElementById('status-display').textContent = "🚀 Optimization started! (This is a test)";
+        }
+        
+        function generateTestStructure() {
+            console.log("🧪 generateTestStructure called");
+            document.getElementById('status-display').textContent = "🧪 Test structure generated! (This is a test)";
+        }
+        
+        function toggleAnalysis(analysisType) {
+            console.log("📊 toggleAnalysis called with:", analysisType);
+            const expandedDiv = document.getElementById(analysisType + '-expanded');
+            if (expandedDiv) {
+                if (expandedDiv.style.display === 'none') {
+                    expandedDiv.style.display = 'block';
+                    document.getElementById('status-display').textContent = "📊 Analysis expanded!";
+                } else {
+                    expandedDiv.style.display = 'none';
+                    document.getElementById('status-display').textContent = "📊 Analysis collapsed!";
+                }
+            }
+        }
+        
+        function toggleHelp() {
+            console.log("❓ toggleHelp called");
+            const helpPanel = document.getElementById('help-panel');
+            if (helpPanel.style.display === 'none') {
+                helpPanel.style.display = 'block';
+                document.getElementById('status-display').textContent = "❓ Help panel opened!";
+            } else {
+                helpPanel.style.display = 'none';
+                document.getElementById('status-display').textContent = "❓ Help panel closed!";
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("🎯 DOM loaded, initializing...");
+            document.getElementById('status-display').textContent = "✅ All systems ready! Click any button to test.";
+        });
+    </script>
+</body>
+</html>
