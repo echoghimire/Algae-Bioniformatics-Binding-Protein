@@ -28,8 +28,10 @@ flask>=2.3.0
 plotly-dash>=2.12.0
 
 # ===== QUANTUM CHEMISTRY (PHASE 6 - REAL SCIENCE) =====
-# Core quantum chemistry package for DFT calculations (when available)
-pyscf>=2.3.0
+# IMPORTANT: PySCF requires special installation on Windows!
+# On Windows: conda install -c conda-forge pyscf  (RECOMMENDED)
+# Building from source requires Visual Studio Build Tools + CMake
+# pyscf>=2.3.0  # Uncomment after successful conda installation
 
 # Alternative chemistry packages for real calculations
 rdkit>=2023.9.1            # Real molecular property calculations (recommended)
@@ -98,8 +100,9 @@ pydantic>=2.0.0            # Data validation and parsing
 #    pip install rdkit  # Alternative
 # 
 # 2. PySCF (Advanced quantum chemistry):
-#    conda install -c conda-forge pyscf  # Recommended
-#    pip install pyscf --verbose         # May require compilation
+#    WINDOWS: conda install -c conda-forge pyscf  # REQUIRED - no pip wheels available
+#    LINUX/MAC: pip install pyscf --verbose      # May work but conda still recommended
+#    NOTE: Building from source requires C++ compiler, CMake, BLAS/LAPACK libraries
 # 
 # 3. Automatic fallback:
 #    - Real calculations when libraries available

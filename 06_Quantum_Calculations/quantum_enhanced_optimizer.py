@@ -59,7 +59,17 @@ class QuantumEnhancedOptimizer:
         
         # Initialize existing components
         if OPTIMIZATION_AVAILABLE:
-            self.ga_optimizer = EnhancedGeneticAlgorithm()
+            # Default target sequence (Carbonic Anhydrase) and config
+            default_target = "MWSAHQILFPQCRTRVELQNSSAAVFQSADLKPQGTFFILVDWLLLPPVQDCGRIRQGEQVVIHPDLAVVLVRQRQELQRQQRQELQSESYEGHQQQLQNKQLQNKQLQNKQ"
+            default_config = {
+                'population_size': 50,
+                'generations': 100,
+                'mutation_rate': 0.1,
+                'crossover_rate': 0.8,
+                'elite_size': 5,
+                'tournament_size': 3
+            }
+            self.ga_optimizer = EnhancedGeneticAlgorithm(default_target, default_config)
             self.binding_analyzer = CO2BindingAnalyzer()
             self.structure_generator = Protein3DGenerator()
         
