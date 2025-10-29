@@ -161,7 +161,7 @@ class QuantumProteinHandler(http.server.SimpleHTTPRequestHandler):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🧪 Real Quantum Protein Optimizer</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     
     <style>
         * {{
@@ -688,7 +688,7 @@ ${{'{0}'.format('''🧪 WHAT YOU'RE SEEING (REAL MODE):
 • RDKit installation required (pip install rdkit)
 • Real calculations will process your actual protein sequence
 • Results will vary based on actual molecular structure
-• Computational time will be realistic (2-10 seconds)'''}}}
+• Computational time will be realistic (2-10 seconds)'''
 
 💡 TIPS FOR REAL MODE:
 • Try different protein sequences to see varying results

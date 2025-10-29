@@ -1,97 +1,4 @@
-# 🔬 Quantum-Enhanced 3D Dashboard
 
-import sys
-import os
-import threading
-import webbrowser
-import time
-from datetime import datetime
-from pathlib import Path
-
-# Add paths for imports
-current_dir = Path(__file__).parent
-sys.path.append(str(current_dir))
-sys.path.append(str(current_dir.parent / "02_Algorithm_Development"))
-sys.path.append(str(current_dir.parent / "05_3D_Molecular_Viewer"))
-
-import http.server
-import socketserver
-import json
-import numpy as np
-from typing import Dict, List, Optional
-
-# Import quantum components
-from quantum_enhanced_optimizer import QuantumEnhancedOptimizer
-from quantum_visualization import QuantumVisualizationSystem
-from quantum_co2_calculator import QuantumCO2BindingCalculator
-
-# Import existing components
-try:
-    from protein_3d_generator import Protein3DGenerator
-    STRUCTURE_GEN_AVAILABLE = True
-except ImportError:
-    STRUCTURE_GEN_AVAILABLE = False
-
-class QuantumEnhanced3DDashboard:
-    """
-    Ultimate protein optimization dashboard combining classical and quantum methods
-    with advanced 3D molecular visualization
-    """
-    
-    def __init__(self, port=8000, quantum_enabled=True):
-        """
-        Initialize quantum-enhanced dashboard
-        
-        Args:
-            port: Web server port
-            quantum_enabled: Enable quantum calculations
-        """
-        self.port = port
-        self.quantum_enabled = quantum_enabled
-        
-        # Initialize components
-        if quantum_enabled:
-            self.quantum_optimizer = QuantumEnhancedOptimizer(
-                quantum_method='B3LYP',
-                quantum_basis='6-31G*',
-                use_quantum=True
-            )
-            self.quantum_calc = QuantumCO2BindingCalculator()
-            self.quantum_viz = QuantumVisualizationSystem()
-        else:
-            self.quantum_optimizer = None
-            self.quantum_calc = None
-            self.quantum_viz = None
-        
-        if STRUCTURE_GEN_AVAILABLE:
-            self.structure_gen = Protein3DGenerator()
-        
-        # Setup directories
-        self.setup_directories()
-        
-        # Dashboard state
-        self.current_results = {}
-        self.optimization_running = False
-        
-    def setup_directories(self):
-        """Setup directory structure for quantum dashboard"""
-        base_dir = Path("quantum_dashboard_data")
-        
-        self.directories = {
-            'base': base_dir,
-            'static': base_dir / "static",
-            'templates': base_dir / "templates", 
-            'results': base_dir / "results",
-            'quantum_viz': base_dir / "quantum_visualizations",
-            'structures': base_dir / "structures"
-        }
-        
-        for dir_path in self.directories.values():
-            dir_path.mkdir(parents=True, exist_ok=True)
-    
-    def create_quantum_enhanced_html(self):
-        """Create the main quantum-enhanced dashboard HTML"""
-        html_content = '''
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1092,9 +999,15 @@ class QuantumEnhanced3DDashboard:
             // Show welcome message for new users
             setTimeout(() => {
                 if (!localStorage.getItem('quantum_dashboard_visited')) {
-                    alert('🔬 Welcome to Quantum Protein Optimization!\n\n' +
-                          '👋 New here? Click "❓ Help Guide" for a beginner-friendly explanation.\n\n' +
-                          '🚀 Ready to start? Try "🧪 Generate Test Structure" first!\n\n' +
+                    alert('🔬 Welcome to Quantum Protein Optimization!
+
+' +
+                          '👋 New here? Click "❓ Help Guide" for a beginner-friendly explanation.
+
+' +
+                          '🚀 Ready to start? Try "🧪 Generate Test Structure" first!
+
+' +
                           '⚛️ This system uses quantum physics to design CO2-capturing proteins for climate solutions.');
                     localStorage.setItem('quantum_dashboard_visited', 'true');
                 }
@@ -1134,84 +1047,4 @@ class QuantumEnhanced3DDashboard:
     </script>
 </body>
 </html>
-        '''
         
-        dashboard_path = self.directories['templates'] / "quantum_dashboard.html"
-        with open(dashboard_path, 'w', encoding='utf-8') as f:
-            f.write(html_content)
-        
-        print(f"✅ Quantum-enhanced dashboard created at {dashboard_path}")
-        return dashboard_path
-    
-    def start_server(self):
-        """Start the quantum-enhanced dashboard server"""
-        # Create the main dashboard HTML
-        self.create_quantum_enhanced_html()
-        
-        # Create HTTP server
-        class QuantumHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
-            def __init__(self, *args, dashboard_instance=None, **kwargs):
-                self.dashboard = dashboard_instance
-                super().__init__(*args, **kwargs)
-            
-            def do_GET(self):
-                if self.path == '/' or self.path == '/index.html':
-                    self.path = '/templates/quantum_dashboard.html'
-                
-                # Serve files from quantum dashboard directory
-                self.directory = str(dashboard_instance.directories['base'])
-                super().do_GET()
-        
-        # Create server with custom handler
-        dashboard_instance = self
-        handler = lambda *args, **kwargs: QuantumHTTPRequestHandler(*args, dashboard_instance=dashboard_instance, **kwargs)
-        
-        with socketserver.TCPServer(("", self.port), handler) as httpd:
-            print(f"🔬 Quantum-Enhanced Dashboard Server starting on http://localhost:{self.port}")
-            print(f"🌟 Features: Quantum calculations, 3D visualization, interactive analysis")
-            print(f"⚛️ Quantum Methods: DFT, electron density, molecular orbitals")
-            print("🚀 Press Ctrl+C to stop the server")
-            
-            # Auto-open browser
-            def open_browser():
-                time.sleep(2)
-                webbrowser.open(f'http://localhost:{self.port}')
-            
-            browser_thread = threading.Thread(target=open_browser)
-            browser_thread.daemon = True
-            browser_thread.start()
-            
-            try:
-                httpd.serve_forever()
-            except KeyboardInterrupt:
-                print("\n🛑 Quantum dashboard server stopped")
-                httpd.shutdown()
-
-if __name__ == "__main__":
-    print("🔬 Initializing Quantum-Enhanced Protein Optimization Dashboard...")
-    print("⚛️  Integrating quantum mechanics with genetic algorithms")
-    print("🧬 Advanced molecular visualization and analysis")
-    print()
-    
-    # Initialize dashboard
-    try:
-        dashboard = QuantumEnhanced3DDashboard(
-            port=8000,
-            quantum_enabled=True
-        )
-        
-        print("🎉 Dashboard initialized successfully!")
-        print("📊 Starting quantum-enhanced web server...")
-        
-        dashboard.start_server()
-        
-    except Exception as e:
-        print(f"❌ Failed to start quantum dashboard: {str(e)}")
-        print("💡 Falling back to classical optimization mode...")
-        
-        # Fallback to classical mode
-        dashboard = QuantumEnhanced3DDashboard(
-            port=8000,
-            quantum_enabled=False
-        )
-        dashboard.start_server()
